@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "SignalRDemo.Domain/1.0.0": {
+        "dependencies": {
+          "SignalRDemo.CoreModule": "1.0.0"
+        },
+        "runtime": {
+          "SignalRDemo.Domain.dll": {}
+        }
+      },
+      "SignalRDemo.CoreModule/1.0.0": {
+        "runtime": {
+          "SignalRDemo.CoreModule.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SignalRDemo.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SignalRDemo.CoreModule/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

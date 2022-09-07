@@ -1,0 +1,12 @@
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\bin\Debug\net6.0\SignalRDemo.CoreModule.deps.json
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\bin\Debug\net6.0\SignalRDemo.CoreModule.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\bin\Debug\net6.0\SignalRDemo.CoreModule.pdb
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\SignalRDemo.CoreModule.csproj.AssemblyReference.cache
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\SignalRDemo.CoreModule.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\SignalRDemo.CoreModule.AssemblyInfoInputs.cache
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\SignalRDemo.CoreModule.AssemblyInfo.cs
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\SignalRDemo.CoreModule.csproj.CoreCompileInputs.cache
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\SignalRDemo.CoreModule.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\refint\SignalRDemo.CoreModule.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\SignalRDemo.CoreModule.pdb
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.CoreModule\obj\Debug\net6.0\ref\SignalRDemo.CoreModule.dll

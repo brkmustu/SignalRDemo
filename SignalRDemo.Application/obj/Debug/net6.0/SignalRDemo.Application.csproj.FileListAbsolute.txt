@@ -1,0 +1,17 @@
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\bin\Debug\net6.0\SignalRDemo.Application.deps.json
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\bin\Debug\net6.0\SignalRDemo.Application.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\bin\Debug\net6.0\SignalRDemo.Application.pdb
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\bin\Debug\net6.0\SignalRDemo.CoreModule.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\bin\Debug\net6.0\SignalRDemo.Domain.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\bin\Debug\net6.0\SignalRDemo.Domain.pdb
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\bin\Debug\net6.0\SignalRDemo.CoreModule.pdb
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.csproj.AssemblyReference.cache
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.AssemblyInfoInputs.cache
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.AssemblyInfo.cs
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.csproj.CoreCompileInputs.cache
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.csproj.CopyComplete
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\refint\SignalRDemo.Application.dll
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\SignalRDemo.Application.pdb
+C:\Users\Burak\source\repos\PrivateProjects\SignalRDemo\SignalRDemo.Application\obj\Debug\net6.0\ref\SignalRDemo.Application.dll

@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "email": "cilmezerka@vusra.com",
+      "password": "Vr9aPqnZxa2CBiE",
+      "repassword": "Vr9aPqnZxa2CBiE",
+      "permissions": [
+        "user"
+      ],
+      "id": 1
+    }
+  ],
+  "cars": [
+    {
+      "id": 1,
+      "code": "bmw",
+      "name": "BMW i8",
+      "imageUrl": "/src/assets/img/bmw-i8.jpg",
+      "description": "Bmw i8'i hibrit motor ile performansı hissedin"
+    },
+    {
+      "id": 2,
+      "code": "mercedes",
+      "name": "Mercedes EQS",
+      "imageUrl": "/src/assets/img/mercedes-eqs.jpeg",
+      "description": "Mercedes EQS ile elektrikli motorun keyfini çıkarın"
+    }
+  ],
+  "orders": [
+    {
+      "date": "2022-09-06",
+      "carId": 1,
+      "id": 1
+    },
+    {
+      "date": "2022-09-06",
+      "carId": 1,
+      "id": 2
+    },
+    {
+      "date": "2022-09-06",
+      "carId": 1,
+      "id": 3
+    },
+    {
+      "date": "2022-09-06",
+      "carId": 2,
+      "id": 4
+    },
+    {
+      "date": "2022-09-06",
+      "carId": 2,
+      "id": 5
+    }
+  ]
+}
