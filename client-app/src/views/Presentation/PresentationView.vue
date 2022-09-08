@@ -36,7 +36,8 @@ const saveOrder = () => {
 };
 
 onBeforeMount(() => {
-  appAxios.get("/cars").then(function (response) {
+  appAxios.get("/cars/getAll").then(function (response) {
+    console.log(response)
     store.commit("setCars", response.data);
   });
 });

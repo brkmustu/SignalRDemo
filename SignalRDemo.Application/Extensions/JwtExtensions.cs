@@ -9,7 +9,7 @@ namespace SignalRDemo.Extensions;
 
 public static class JwtExtensions
 {
-    public static AccessToken CreateToken(
+    public static TokenResult CreateToken(
           this User user,
           IEnumerable<string> permissions,
           TokenOptions tokenOptions
@@ -22,7 +22,7 @@ public static class JwtExtensions
         var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
         var token = jwtSecurityTokenHandler.WriteToken(jwt);
 
-        return new AccessToken()
+        return new TokenResult()
         {
             Token = token,
             Expiration = accessTokenExpiration

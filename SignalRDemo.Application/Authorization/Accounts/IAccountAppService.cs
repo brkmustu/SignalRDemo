@@ -5,5 +5,5 @@ namespace SignalRDemo.Authorization.Accounts;
 public interface IAccountAppService
 {
     Task<Result> RegisterAsync(RegisterRequestDto request);
-    Task<Result<AccessToken>> SignInAsync(SignInRequestDto request);
+    Task<Result<TokenResult>> SignInAsync(SignInRequestDto request);
 }

@@ -1,8 +1,18 @@
-﻿namespace SignalRDemo.Cars;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-public class CarImage
+namespace SignalRDemo.Cars;
+
+public class CarImage : Entity
 {
-    public int Id { get; set; }
     public int CarId { get; set; }
+    public CarImageType CarImageType { get; set; }
     public string Url { get; set; }
+}
+
+public enum CarImageType
+{
+    Default = 1,
+    OnlyDoorsOpen = 2,
+    OnlyLigthOpen = 3,
+    DoorsAndLigthBothOpen = 4
 }

@@ -38,10 +38,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const userPermissions = store.getters.userPermissions;
+  const userRoles = store.getters.userRoles;
 
   if (to.meta.permissions && to.meta.permissions.length > 0) {
-    let isAllowed = userPermissions.some((p) => to.meta.permissions.includes(p));
+    let isAllowed = userRoles.some((p) => to.meta.permissions.includes(p));
 
     if (!isAllowed) next("/signin");
     else if (["signin", "register"].indexOf(to.name) > 0) next("/");

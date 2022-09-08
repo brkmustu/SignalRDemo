@@ -12,21 +12,18 @@ namespace SignalRDemo.Authorization.Accounts
     {
         private readonly IGenericRepository<User> _repository;
         private readonly IGenericRepository<Role> _roleRepository;
-        private readonly IGenericRepository<Permission> _permissionRepository;
         private readonly IMapper _mapper;
         private readonly TokenOptions _tokenOptions;
 
         public AccountAppService(
-                IGenericRepository<User> repository, 
-                IGenericRepository<Role> roleRepository, 
-                IGenericRepository<Permission> permissionRepository,
+                IGenericRepository<User> repository,
+                IGenericRepository<Role> roleRepository,
                 IMapper mapper,
                 IOptions<TokenOptions> tokenOptions
             )
         {
             _repository = repository;
             _roleRepository = roleRepository;
-            _permissionRepository = permissionRepository;
             _mapper = mapper;
             _tokenOptions = tokenOptions.Value;
         }
@@ -53,44 +50,37 @@ namespace SignalRDemo.Authorization.Accounts
             return Result.Failure(new string[] { "Bu e posta adresi ile kayıt mevcut olduğundan işleminiz gerçekleştirilemiyor. Şifrenizi mi unuttunuz?" });
         }
 
-        public async Task<Result<AccessToken>> SignInAsync(SignInRequestDto request)
+        public async Task<Result<TokenResult>> SignInAsync(SignInRequestDto request)
         {
             var user = (await _repository.GetAllAsync()).FirstOrDefault(x => x.EmailAddress == request.EmailAddress);
 
             if (user == null)
-                return await Task.FromResult(Result.Failure<AccessToken>(new[] { "Kullanıcı bulunamadığından login işlemi gerçekleştirilemedi!" }));
+                return await Task.FromResult(Result.Failure<TokenResult>(new[] { "Kullanıcı bulunamadığından login işlemi gerçekleştirilemedi!" }));
 
             if (user.RoleIds == null || user.RoleIds.Length == 0)
-                return await Task.FromResult(Result.Failure<AccessToken>(new[] { "Kullanıcı herhangi bir yetkiye sahip olmadığından login işlemi gerçekleştirilemedi!" }));
+                return await Task.FromResult(Result.Failure<TokenResult>(new[] { "Kullanıcı herhangi bir yetkiye sahip olmadığından login işlemi gerçekleştirilemedi!" }));
 
             if (request.Password.VerifyPasswordHash(user.PasswordSalt, user.PasswordHash))
             {
-                List<int> permissionIds = new List<int>();
-                List<Permission> permissions = new List<Permission>();
+                List<string> roles = new List<string>();
 
                 foreach (var roleId in user.RoleIds)
                 {
-                    var rolePermissionIds = (await _roleRepository.GetAllAsync()).FirstOrDefault(x => x.Id == roleId).PermissionIds;
-                    if (rolePermissionIds != null && rolePermissionIds.Length > 0)
+                    var role = (await _roleRepository.GetAllAsync()).FirstOrDefault(x => x.Id == roleId);
+                    if (role != null)
                     {
-                        permissionIds.AddRange(rolePermissionIds);
-                    }
-                }
-                foreach (var permissionId in permissionIds)
-                {
-                    var permission = (await _permissionRepository.GetAllAsync()).FirstOrDefault(x => x.Id == permissionId);
-                    if (permission != null)
-                    {
-                        permissions.Add(permission);
+                        roles.Add(role.Name);
                     }
                 }
 
-                var token = user.CreateToken(permissions.Select(x => x.Name), _tokenOptions);
+                var token = user.CreateToken(roles, _tokenOptions);
+
+                token.Roles = roles.ToArray();
 
                 return await Task.FromResult(Result.Success(token));
             }
 
-            return await Task.FromResult(Result.Failure<AccessToken>(new[] { "Şifre eşleştirilemediğinden login işlemi gerçekleştirilemedi!" }));
+            return await Task.FromResult(Result.Failure<TokenResult>(new[] { "Şifre eşleştirilemediğinden login işlemi gerçekleştirilemedi!" }));
         }
     }
 }

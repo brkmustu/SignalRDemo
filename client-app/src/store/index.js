@@ -13,9 +13,8 @@ const store = createStore({
     signInInfo: {
       authenticated: false,
       user: {
-        id: 0,
         email: "",
-        permissions: [],
+        roles: [],
       },
       jwtToken: "",
     },
@@ -33,8 +32,8 @@ const store = createStore({
     authenticated(state) {
       return state.signInInfo.authenticated;
     },
-    userPermissions(state) {
-      return state.signInInfo ? state.signInInfo.user.permissions : [];
+    userRoles(state) {
+      return state.signInInfo ? state.signInInfo.user.roles : [];
     },
   },
   mutations: {

@@ -1,11 +1,19 @@
 import axios from "axios";
 export const appAxios = axios.create({
-  baseURL: "https://localhost:7000",
+  baseURL: "http://localhost:5000",
   withCredentials: false,
   headers: {
     "Content-Type": "application/json",
   },
 });
+
+export const setJwtTokenHeader = (jwtToken) => {
+  appAxios.defaults.headers.common["Authorization"] = "Bearer " + jwtToken;
+};
+
+export const cleanTokenHeader = () => {
+  appAxios.defaults.headers.common["Authorization"] = "";
+};
 
 export const getCars = (fnThen) => {
   appAxios

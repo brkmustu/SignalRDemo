@@ -6,7 +6,7 @@ namespace SignalRDemo.WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize]
+[Authorize(Roles = "user")]
 public class OrdersController
 {
     private readonly IOrderAppService _orderAppService;
@@ -25,6 +25,7 @@ public class OrdersController
     }
 
     [HttpPost]
+    [Route("[action]")]
     public async Task<IActionResult> InsertAsync(OrderDto order)
     {
         var response = await _orderAppService.InsertAsync(order);

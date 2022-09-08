@@ -2,6 +2,7 @@
 using SignalRDemo.Authorization.Accounts;
 using SignalRDemo.Cars;
 using SignalRDemo.Orders;
+using SignalRDemo.System;
 
 namespace SignalRDemo;
 
@@ -12,6 +13,7 @@ public static class DependencyInjection
         services.AddTransient<IAccountAppService, AccountAppService>();
         services.AddTransient<ICarAppService, CarAppService>();
         services.AddTransient<IOrderAppService, OrderAppService>();
+        services.AddTransient<SampleDataSeeder>();
 
         return services;
     }

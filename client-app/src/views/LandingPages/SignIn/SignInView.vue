@@ -38,11 +38,11 @@ const onSubmit = () => {
   }
 
   appAxios
-    .get("/accounts/signin", { params: { email: user.value.email } })
+    .post("/accounts/signin", { EmailAddress: user.value.email, Password: user.value.password })
     .then(function (response) {
-      if (response && response.data && response.data.length > 0) {
+      if (response && response.data && response.data.data) {
         toast.success("Oturum açma işlemi başarılı.");
-        store.commit("setSignInInfo", { user: response.data[0], jwtToken: "txaxTHkm3GBGWckwUa2h" });
+        store.commit("setSignInInfo", { user: { email:user.value.email, roles:response.data.data.roles }, jwtToken: response.data.data.token });
         router.push({ path: "/" });
       } else {
         toast.error("Girdiğiniz e posta adresiyle herhangi bir kayıt bulunamamıştır!");

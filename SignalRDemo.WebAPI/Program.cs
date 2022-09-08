@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SignalRDemo;
 using SignalRDemo.Application;
+using SignalRDemo.System;
 using SignalRDemo.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +21,7 @@ builder.Services.AddPersistence(builder.Configuration);
 
 builder.Services.AddSingleton<IAppGuid, AppGuid>();
 builder.Services.AddConsuleClient(builder.Configuration);
-
+builder.Services.AddHttpContextAccessor();
 
 var tokenOptions = builder.Configuration.GetSection(TokenOptions.SectionName).Get<TokenOptions>();
 
@@ -53,6 +53,9 @@ builder.Services.AddCors(
                                 .Select(o => o.RemovePostFix("/"))
                                 .ToArray()
                 )
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
         )
 );
 
@@ -61,6 +64,8 @@ builder.Services.AddAutoMapper(typeof(ApplicationService<,>).Assembly);
 builder.Services.Configure<TokenOptions>(builder.Configuration.GetSection(TokenOptions.SectionName));
 
 var app = builder.Build();
+
+app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -81,6 +86,9 @@ using (var scope = app.Services.CreateScope())
     {
         var baseModuleContext = scopedServices.GetRequiredService<SignalRDemoDbContext>();
         baseModuleContext.Database.Migrate();
+
+        var sampleDataSeeder = scopedServices.GetRequiredService<SampleDataSeeder>();
+        await sampleDataSeeder.SeedSampleDatasAsync();
     }
     catch (Exception ex)
     {

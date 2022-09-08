@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SignalRDemo.Authorization;
 using SignalRDemo.Authorization.Roles;
 using SignalRDemo.Authorization.Users;
 using SignalRDemo.Cars;
@@ -20,7 +19,6 @@ public class SignalRDemoDbContext : DbContext
     public DbSet<Car> Cars { get; set; }
     public DbSet<CarImage> CarImages { get; set; }
     public DbSet<Order> Orders { get; set; }
-    public DbSet<Permission> Permissions { get; set; }
     public DbSet<Role> Roles { get; set; }
     public DbSet<User> Users { get; set; }
 }

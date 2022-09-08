@@ -12,7 +12,7 @@ using SignalRDemo;
 namespace SignalRDemo.Migrations
 {
     [DbContext(typeof(SignalRDemoDbContext))]
-    [Migration("20220906213919_initial-migration")]
+    [Migration("20220908040625_initial migration")]
     partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,10 +39,6 @@ namespace SignalRDemo.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<long[]>("PermissionIds")
-                        .IsRequired()
-                        .HasColumnType("bigint[]");
 
                     b.HasKey("Id");
 
@@ -129,13 +125,14 @@ namespace SignalRDemo.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("CarImageType")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CarId");
 
                     b.ToTable("CarImages");
                 });
@@ -166,37 +163,6 @@ namespace SignalRDemo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("SignalRDemo.Permissions.Permission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Permissions");
-                });
-
-            modelBuilder.Entity("SignalRDemo.Cars.CarImage", b =>
-                {
-                    b.HasOne("SignalRDemo.Cars.Car", null)
-                        .WithMany("Images")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SignalRDemo.Cars.Car", b =>
-                {
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }
