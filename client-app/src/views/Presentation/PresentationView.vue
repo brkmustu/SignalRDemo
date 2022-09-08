@@ -26,18 +26,18 @@ const getToday = () => {
 
 const saveOrder = () => {
   appAxios
-    .post("/orders", { date: getToday(), carId: store.getters.selectedCar.id })
+    .post("/orders/insert", { carId: store.getters.selectedCar.id })
     .then(function (response) {
       toast.success("Sipariş başarıyla kaydedildi.");
     })
     .catch(function (error) {
+      console.log(error)
       toast.error("Siparişi kaydederken bir hata oluştu!");
     });
 };
 
 onBeforeMount(() => {
   appAxios.get("/cars/getAll").then(function (response) {
-    console.log(response)
     store.commit("setCars", response.data);
   });
 });

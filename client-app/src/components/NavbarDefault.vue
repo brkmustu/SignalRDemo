@@ -2,7 +2,6 @@
 import { RouterLink } from "vue-router";
 import { ref, watch, computed } from "vue";
 import { useWindowsWidth } from "@/assets/js/useWindowsWidth";
-import SimpleModal from "@/components/SimpleModal.vue";
 
 // images
 import ArrDark from "@/assets/img/down-arrow-dark.svg";

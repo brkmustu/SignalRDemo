@@ -51,6 +51,7 @@ public static class JwtExtensions
     private static IEnumerable<Claim> SetClaims(User user, IEnumerable<string> permissions)
     {
         var claims = new List<Claim>();
+        claims.AddName(user.EmailAddress);
         claims.AddNameIdentifier(user.Id.ToString());
         claims.AddRoles(permissions.ToArray());
 

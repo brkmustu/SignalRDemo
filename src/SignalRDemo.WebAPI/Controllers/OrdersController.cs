@@ -6,7 +6,7 @@ namespace SignalRDemo.WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Roles = "user")]
+[Authorize(Roles = "User")]
 public class OrdersController
 {
     private readonly IOrderAppService _orderAppService;

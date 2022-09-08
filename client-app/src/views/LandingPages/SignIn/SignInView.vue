@@ -18,6 +18,7 @@ const router = useRouter();
 const store = useStore();
 const toast = useToast();
 const appAxios = inject("appAxios");
+const setJwtTokenHeader = inject("setJwtTokenHeader");
 
 const user = ref({
   email: "",
@@ -42,7 +43,8 @@ const onSubmit = () => {
     .then(function (response) {
       if (response && response.data && response.data.data) {
         toast.success("Oturum açma işlemi başarılı.");
-        store.commit("setSignInInfo", { user: { email:user.value.email, roles:response.data.data.roles }, jwtToken: response.data.data.token });
+        store.commit("setSignInInfo", { user: { email: user.value.email, roles: response.data.data.roles }, jwtToken: response.data.data.token });
+        setJwtTokenHeader(response.data.data.token);
         router.push({ path: "/" });
       } else {
         toast.error("Girdiğiniz e posta adresiyle herhangi bir kayıt bulunamamıştır!");

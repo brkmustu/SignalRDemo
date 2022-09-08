@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from "./router";
 import store from "./store";
 import Toast, { POSITION }  from "vue-toastification";
-import { appAxios, getCars, getOrders } from "./utils/appAxios.js"
+import { appAxios, getCars, getOrders, setJwtTokenHeader } from "./utils/appAxios.js"
 
 import "vue-toastification/dist/index.css";
 
@@ -29,5 +29,6 @@ app.use(Toast, {
 app.provide("appAxios", appAxios);
 app.provide("getCars", getCars);
 app.provide("getOrders", getOrders);
+app.provide("setJwtTokenHeader", setJwtTokenHeader);
 app.use(materialKit);
 app.mount("#app");

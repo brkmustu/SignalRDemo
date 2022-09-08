@@ -3,6 +3,7 @@ import PresentationView from "@/views/Presentation/PresentationView.vue";
 import PresentationListView from "@/views/Presentation/PresentationListView.vue";
 import SignInView from "@/views/LandingPages/SignIn/SignInView.vue";
 import RegisterView from "@/views/LandingPages/Register/RegisterView.vue";
+import ProductView from "@/views/ProductPages/ProductView.vue"
 import store from "@/store/index.js";
 
 const router = createRouter({
@@ -13,7 +14,15 @@ const router = createRouter({
       name: "presentation",
       component: PresentationView,
       meta: {
-        permissions: ["user"],
+        permissions: ["User"],
+      },
+    },
+    {
+      path: "/product",
+      name: "product",
+      component: ProductView,
+      meta: {
+        permissions: ["Admin"],
       },
     },
     {
@@ -21,7 +30,7 @@ const router = createRouter({
       name: "presentation-list",
       component: PresentationListView,
       meta: {
-        permissions: ["user"],
+        permissions: ["User"],
       },
     },
     {

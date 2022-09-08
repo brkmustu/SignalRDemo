@@ -143,7 +143,13 @@ public class SampleDataSeeder
         await _roleRepository.InsertAsync(new Role
         {
             Id = 1,
-            Name = "user",
+            Name = "Admin",
+            Description = "Admin yetkisi için varsayılan rol."
+        });
+        await _roleRepository.InsertAsync(new Role
+        {
+            Id = 1,
+            Name = "User",
             Description = "Kayıt olan kullanıcılara tanımladığımız varsayılan rol."
         });
     }
@@ -161,7 +167,7 @@ public class SampleDataSeeder
             Id = 1,
             EmailAddress = "admin@admin.com",
             CreatedDate = DateTime.Now,
-            RoleIds = new int[] { 1 },
+            RoleIds = new int[] { 1, 2 },
         };
 
         var encryptedPassword = AdminPassword.CreatePasswordHash();

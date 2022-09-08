@@ -39,8 +39,7 @@ namespace SignalRDemo.Authorization.Accounts
                 var encryptedPassword = request.Password.CreatePasswordHash();
                 user.PasswordHash = encryptedPassword.PasswordHash;
                 user.PasswordSalt = encryptedPassword.PasswordSalt;
-
-                //user.RoleIds
+                user.RoleIds = new int[] { 2 }; // varsayılan olarak "User" yetkisi tanımlıyoruz.
 
                 await _repository.InsertAsync(user);
 
