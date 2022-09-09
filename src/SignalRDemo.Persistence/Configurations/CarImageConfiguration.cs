@@ -19,5 +19,11 @@ public class CarImageConfiguration : IEntityTypeConfiguration<CarImage>
 
         builder.Property(x => x.CarImageType)
             .HasColumnType("integer");
+
+        builder.Property(x => x.Title)
+            .HasMaxLength(200);
+
+        builder.Property(x => x.Description)
+            .HasMaxLength(300);
     }
 }

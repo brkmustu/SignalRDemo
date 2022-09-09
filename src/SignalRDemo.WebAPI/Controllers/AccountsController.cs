@@ -4,10 +4,8 @@ using SignalRDemo.Authorization.Accounts;
 
 namespace SignalRDemo.WebAPI.Controllers;
 
-[ApiController]
-[Route("[controller]")]
 [AllowAnonymous]
-public class AccountsController : Controller
+public class AccountsController : BaseController
 {
     private readonly IAccountAppService _accountAppService;
 

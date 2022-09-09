@@ -1,6 +1,6 @@
 import axios from "axios";
 export const appAxios = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://localhost:7000/gateway",
   withCredentials: false,
   headers: {
     "Content-Type": "application/json",

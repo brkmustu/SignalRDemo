@@ -2,8 +2,11 @@ using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
+using SignalRDemo;
 
 var builder = WebApplication.CreateBuilder(args);
+
+const string _defaultCorsPolicyName = "localhost";
 
 // Add services to the container.
 
@@ -24,6 +27,22 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "Public Api Gateway" });
 });
 
+builder.Services.AddCors(
+        options => options.AddPolicy(
+                _defaultCorsPolicyName,
+                policyBuilder => policyBuilder
+                    .WithOrigins(
+                            builder.Configuration["App:CorsOrigins"]
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(o => o.RemovePostFix("/"))
+                                .ToArray()
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+        )
+);
+
 
 var app = builder.Build();
 
@@ -37,7 +56,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors(_defaultCorsPolicyName); // Enable CORS!
+app.UseWebSockets();
 await app.UseOcelot();
 
 app.Run();

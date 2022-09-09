@@ -76,6 +76,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 1,
             CarImageType = CarImageType.Default,
+            Description = "Bmw i8 için varsayılan arka plan resmidir.",
+            Title = "Varsayılan Bmw i8",
             Url = "/src/assets/img/bmw-i8.jpg",
         });
         await _carImageRepository.InsertAsync(new CarImage
@@ -83,6 +85,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 1,
             CarImageType = CarImageType.OnlyDoorsOpen,
+            Description = "Bmw i8 için sol kapı açık olan resimdir.",
+            Title = "Sol kapı açık Bmw i8",
             Url = "/src/assets/img/bmw-i8-left-door.jpg",
         });
         await _carImageRepository.InsertAsync(new CarImage
@@ -90,6 +94,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 1,
             CarImageType = CarImageType.OnlyLigthOpen,
+            Description= "Bmw i8 için ışıkların açık olduğu resimdir.",
+            Title= "Işıkları açık Bmw i8",
             Url = "/src/assets/img/bmw-i8-light.jpg",
         });
 
@@ -98,6 +104,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 1,
             CarImageType = CarImageType.DoorsAndLigthBothOpen,
+            Description = "Bmw i8 için hem ışıkların hemde kapıları açık olduğu resimdir.",
+            Title = "Işıkları ve kapıları açık Bmw i8",
             Url = "/src/assets/img/bmw-i8-light-and-doors.jpg",
         });
 
@@ -106,6 +114,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 2,
             CarImageType = CarImageType.Default,
+            Description = "Mercedes EQS için varsayılan arka plan resmidir.",
+            Title = "Varsayılan Mercedes EQS",
             Url = "/src/assets/img/mercedes-eqs.jpeg",
         });
         await _carImageRepository.InsertAsync(new CarImage
@@ -113,6 +123,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 2,
             CarImageType = CarImageType.OnlyDoorsOpen,
+            Description = "Mercedes EQS için kapıları açık olan resimdir.",
+            Title = "Kapıları açık Mercedes EQS",
             Url = "/src/assets/img/mercedes-eqs-doors.webp",
         });
         await _carImageRepository.InsertAsync(new CarImage
@@ -120,6 +132,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 2,
             CarImageType = CarImageType.OnlyLigthOpen,
+            Description = "Mercedes EQS için ışıkları açık olan resimdir.",
+            Title = "Işıkları açık Mercedes EQS",
             Url = "/src/assets/img/mercedes-eqs-light.jpeg",
         });
         await _carImageRepository.InsertAsync(new CarImage
@@ -127,6 +141,8 @@ public class SampleDataSeeder
             Id = 1,
             CarId = 2,
             CarImageType = CarImageType.DoorsAndLigthBothOpen,
+            Description = "Mercedes EQS için hem ışıkları ve hemde kapıları açık olan resimdir.",
+            Title = "Işıkları ve kapıları açık Mercedes EQS",
             Url = "/src/assets/img/mercedes-eqs-doors-and-light.jpeg",
         });
 

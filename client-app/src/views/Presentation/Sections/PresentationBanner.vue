@@ -1,10 +1,13 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted, inject } from "vue";
 import { useStore } from "vuex";
+// import { carHub } from "@/utils/carHub.js";
 
 import NavPills from "@/components/NavPills.vue";
 
 const store = useStore();
+const getCarHub = inject("getCarHub");
+const carHub = getCarHub();
 
 const getTabClass = (carCode) => {
   return store.getters.selectedCar.code === carCode ? "show active" : "";
@@ -36,63 +39,32 @@ const bgMercedes = computed(() => getImageUrl("mercedes"));
 const changeSelectedCar = (car) => {
   store.commit("setSelectedCar", car);
 };
+
+onMounted(() => {
+  carHub.client.on("ChangeImage", function (input) {
+    store.commit("setCarImageUrl", { id: input.id, imageUrl: input.url });
+  });
+  carHub.start();
+});
 </script>
 <template>
   <NavPills>
     <template #tabList>
       <li class="nav-item">
-        <a
-          class="nav-link mb-0 px-0 py-1 active"
-          data-bs-toggle="tab"
-          data-bs-target="#pills-bmw"
-          @click="changeSelectedCar('bmw')"
-          role="tab"
-          aria-controls="profile"
-          aria-selected="true"
-        >
-          BMW
-        </a>
+        <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab" data-bs-target="#pills-bmw" @click="changeSelectedCar('bmw')" role="tab" aria-controls="profile" aria-selected="true"> BMW </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link mb-0 px-0 py-1"
-          data-bs-toggle="tab"
-          data-bs-target="#pills-mercedes"
-          @click="changeSelectedCar('mercedes')"
-          role="tab"
-          aria-controls="dashboard"
-          aria-selected="false"
-        >
-          Mercedes
-        </a>
+        <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" data-bs-target="#pills-mercedes" @click="changeSelectedCar('mercedes')" role="tab" aria-controls="dashboard" aria-selected="false"> Mercedes </a>
       </li>
     </template>
     <template #tabBody>
-      <div
-        class="tab-pane fade"
-        :class="showTab('bmw')"
-        id="pills-bmw"
-        role="tabpanel"
-        aria-labelledby="pills-home-tab"
-      >
-        <div
-          class="page-header min-vh-75"
-          :style="{ backgroundImage: `url(${bgBmw})` }"
-        ></div>
+      <div class="tab-pane fade" :class="showTab('bmw')" id="pills-bmw" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="page-header min-vh-75" :style="{ backgroundImage: `url(${bgBmw})` }"></div>
         <br />
         <h3>BMW i8 modelimizi keşfedin.</h3>
       </div>
-      <div
-        class="tab-pane fade"
-        :class="showTab('mercedes')"
-        id="pills-mercedes"
-        role="tabpanel"
-        aria-labelledby="pills-profile-tab"
-      >
-        <div
-          class="page-header min-vh-75"
-          :style="{ backgroundImage: `url(${bgMercedes})` }"
-        ></div>
+      <div class="tab-pane fade" :class="showTab('mercedes')" id="pills-mercedes" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="page-header min-vh-75" :style="{ backgroundImage: `url(${bgMercedes})` }"></div>
         <br />
         <h3>Mercedes EQS modelimizi keşfedin.</h3>
       </div>

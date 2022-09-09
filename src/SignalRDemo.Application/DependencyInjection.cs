@@ -12,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddTransient<IAccountAppService, AccountAppService>();
         services.AddTransient<ICarAppService, CarAppService>();
+        services.AddTransient<ICarImageAppService, CarImageAppService>();
         services.AddTransient<IOrderAppService, OrderAppService>();
         services.AddTransient<SampleDataSeeder>();
 

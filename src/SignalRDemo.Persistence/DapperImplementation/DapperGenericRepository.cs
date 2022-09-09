@@ -50,7 +50,7 @@ public class DapperGenericRepository<T> : IGenericRepository<T> where T : class,
         {
             using var connection = CreateConnection();
             var result =
-                await connection.QuerySingleOrDefaultWithToken<T>($"SELECT {_selectFields} FROM {_tableName} WHERE Id=@Id",
+                await connection.QuerySingleOrDefaultWithToken<T>($"SELECT {_selectFields} FROM public.\"{_tableName}\" WHERE \"Id\"=@Id",
                     new { Id = id }, cancellationToken: cancellationToken);
             if (result == null) throw new KeyNotFoundException($"{_tableName} with id [{id}] could not be found.");
 
@@ -172,7 +172,7 @@ public class DapperGenericRepository<T> : IGenericRepository<T> where T : class,
         }
 
         updateQuery.Remove(updateQuery.Length - 1, 1); //remove last comma
-        updateQuery.Append(" WHERE Id=@Id");
+        updateQuery.Append(" WHERE \"Id\"=@Id");
 
         return updateQuery.ToString();
     }

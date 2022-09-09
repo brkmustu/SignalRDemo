@@ -4,7 +4,10 @@ namespace SignalRDemo.Cars
 {
     public class CarImageDto : EntityDto
     {
-        public string ImageUrl { get; set; }
-        public CarImageType Type { get; set; }
+        public int CarId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public CarImageType CarImageType { get; set; }
+        public string Url { get; set; }
     }
 }

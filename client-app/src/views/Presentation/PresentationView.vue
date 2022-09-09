@@ -31,7 +31,7 @@ const saveOrder = () => {
       toast.success("Sipariş başarıyla kaydedildi.");
     })
     .catch(function (error) {
-      console.log(error)
+      console.log(error);
       toast.error("Siparişi kaydederken bir hata oluştu!");
     });
 };
@@ -39,6 +39,9 @@ const saveOrder = () => {
 onBeforeMount(() => {
   appAxios.get("/cars/getAll").then(function (response) {
     store.commit("setCars", response.data);
+  });
+  appAxios.get("/carImages/getAll").then(function (response) {
+    store.commit("setCarImages", response.data);
   });
 });
 </script>

@@ -12,7 +12,7 @@ using SignalRDemo;
 namespace SignalRDemo.Migrations
 {
     [DbContext(typeof(SignalRDemoDbContext))]
-    [Migration("20220908040625_initial migration")]
+    [Migration("20220908221848_initial migration")]
     partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,6 +127,14 @@ namespace SignalRDemo.Migrations
 
                     b.Property<int>("CarImageType")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Url")
                         .IsRequired()

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@microsoft/signalr": "^6.0.8",
     "@popperjs/core": "2.11.5",
     "axios": "^0.27.2",
     "bootstrap": "5.1.3",

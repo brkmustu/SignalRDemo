@@ -3,12 +3,13 @@ import { createStore } from "vuex";
 const store = createStore({
   state: {
     cars: [],
+    carImages: [],
     selectedCar: {
       id: 1,
       code: "",
       name: "",
       imageUrl: "",
-      description:""
+      description: "",
     },
     signInInfo: {
       authenticated: false,
@@ -25,6 +26,9 @@ const store = createStore({
     },
     cars(state) {
       return state.cars;
+    },
+    carImages: (state) => (carId) =>  {
+      return state.carImages.filter(x => x.carId == carId);
     },
     user(state) {
       return state.signInInfo.user;
@@ -56,16 +60,21 @@ const store = createStore({
       };
     },
     setCars(state, cars) {
-      cars.map(x => state.cars.push(x))
-      state.selectedCar = cars[0];
+      state.cars = [];
+      cars.map((x) => state.cars.push(x));
+      state.selectedCar = cars.find(x => x.id == 1);
+    },
+    setCarImages(state, carImages) {
+      state.carImages = [];
+      carImages.map((x) => state.carImages.push(x));
     },
     setSelectedCar(state, carCode) {
       state.selectedCar = state.cars.find((x) => x.code == carCode);
     },
     setCarImageUrl(state, parameterObj) {
       console.log(state, parameterObj);
-      const car = state.cars.find((x) => x.code == parameterObj.carCode);
-      const newCars = state.cars.filter((x) => x.code != parameterObj.carCode);
+      const car = state.cars.find((x) => x.id == parameterObj.id);
+      const newCars = state.cars.filter((x) => x.id != parameterObj.id);
       car.imageUrl = parameterObj.imageUrl;
       newCars.push(car);
       state.cars = newCars;

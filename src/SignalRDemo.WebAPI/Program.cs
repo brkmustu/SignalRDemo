@@ -5,6 +5,7 @@ using SignalRDemo;
 using SignalRDemo.Application;
 using SignalRDemo.System;
 using SignalRDemo.WebAPI;
+using SignalRDemo.WebAPI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,8 +80,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthentication();
-
 app.UseAuthorization();
+
 
 using (var scope = app.Services.CreateScope())
 {
@@ -100,6 +101,8 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "An error occurred while migrating or initializing the database.");
     }
 }
+
+app.MapHub<CarImageHub>("/hubs/car-hubs");
 
 app.MapControllers();
 

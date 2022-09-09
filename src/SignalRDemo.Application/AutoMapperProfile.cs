@@ -13,6 +13,9 @@ public class AutoMapperProfile : Profile
         CreateMap<Car, CarDto>();
         CreateMap<CarDto, Car>();
 
+        CreateMap<CarImage, CarImageDto>();
+        CreateMap<CarImageDto, CarImage>();
+
         CreateMap<Order, OrderDto>();
         CreateMap<OrderDto, Order>();
 

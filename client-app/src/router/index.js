@@ -18,8 +18,8 @@ const router = createRouter({
       },
     },
     {
-      path: "/product",
-      name: "product",
+      path: "/product-settings",
+      name: "product-settings",
       component: ProductView,
       meta: {
         permissions: ["Admin"],

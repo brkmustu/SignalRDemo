@@ -10,7 +10,8 @@ public interface IApplicationService<TEntity, TEntityDto>
     where TEntity : class, IEntity
     where TEntityDto : class, IEntityDto
 {
-    Task<TEntity> InsertAsync(TEntityDto entity);
-    Task<TEntity> GetByIdAsync(int id);
-    Task<List<TEntity>> GetAllAsync();
+    Task<TEntityDto> InsertAsync(TEntityDto entity);
+    Task<TEntityDto> UpdateAsync(TEntityDto entity);
+    Task<TEntityDto> GetByIdAsync(int id);
+    Task<List<TEntityDto>> GetAllAsync();
 }

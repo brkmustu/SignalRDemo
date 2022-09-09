@@ -4,10 +4,8 @@ using SignalRDemo.Orders;
 
 namespace SignalRDemo.WebAPI.Controllers;
 
-[ApiController]
-[Route("[controller]")]
 [Authorize(Roles = "User")]
-public class OrdersController
+public class OrdersController : BaseController
 {
     private readonly IOrderAppService _orderAppService;
 
