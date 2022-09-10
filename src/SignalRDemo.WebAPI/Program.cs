@@ -1,25 +1,45 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Npgsql;
+using Serilog;
 using SignalRDemo;
 using SignalRDemo.Application;
 using SignalRDemo.System;
 using SignalRDemo.WebAPI;
+using SignalRDemo.WebAPI.BackgroundWorkers;
 using SignalRDemo.WebAPI.Hubs;
+using Stashbox;
 
 var builder = WebApplication.CreateBuilder(args);
 
 const string _defaultCorsPolicyName = "localhost";
 
+var configurationBuilder = new ConfigurationBuilder();
+
+configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+// Specifying the configuration for serilog
+Log.Logger = new LoggerConfiguration() // initiate the logger configuration
+                .ReadFrom.Configuration(configurationBuilder.Build()) // connect serilog to our configuration folder
+                .Enrich.FromLogContext() //Adds more information to our logs from built in Serilog 
+                .WriteTo.Debug() // decide where the logs are going to be shown
+                .CreateLogger(); //initialise the logger
+
+builder.Host.UseSerilog();
+
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddControllersAsServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
 builder.Services.AddPersistence(builder.Configuration);
-
+builder.Services.AddLogging();
 builder.Services.AddSingleton<IAppGuid, AppGuid>();
 builder.Services.AddConsuleClient(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
@@ -65,8 +85,27 @@ builder.Services.AddCors(
 );
 
 builder.Services.AddAutoMapper(typeof(ApplicationService<,>).Assembly);
-
 builder.Services.Configure<TokenOptions>(builder.Configuration.GetSection(TokenOptions.SectionName));
+
+builder.Host.UseStashbox(container => // Optional configuration options.
+{
+    container.AddApplication();
+
+    // This one enables the lifetime validation for production environments too.
+    container.Configure(config => config.WithLifetimeValidation());
+});
+
+builder.Host.ConfigureContainer<IStashboxContainer>((context, container) =>
+{
+    // Execute a dependency tree validation.
+    if (context.HostingEnvironment.IsDevelopment())
+        container.Validate();
+});
+
+builder.Services.AddHostedService(provider => new RealTimeCarChangeWorker(
+    provider.GetRequiredService<IHubContext<CarImageHub, ICarImageHub>>(),
+    builder.Configuration
+));
 
 var app = builder.Build();
 

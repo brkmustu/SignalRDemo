@@ -1,10 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
+using SignalRDemo.Cars;
 using SignalRDemo.DataAccess;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 
 namespace SignalRDemo.DapperImplementation;
 
@@ -94,7 +98,7 @@ public class DapperGenericRepository<T> : IGenericRepository<T> where T : class,
     /// Open new connection and return it for use
     /// </summary>
     /// <returns></returns>
-    private IDbConnection CreateConnection()
+    private NpgsqlConnection CreateConnection()
     {
         var conn = SqlConnection();
         conn.Open();

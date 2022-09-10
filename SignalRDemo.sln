@@ -17,7 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{EC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRDemo.WebAPI", "src\SignalRDemo.WebAPI\SignalRDemo.WebAPI.csproj", "{AA9EA728-681F-4D6E-B1F4-6362D0DA3EA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRDemo.ApiGateway", "src\SignalRDemo.ApiGateway\SignalRDemo.ApiGateway.csproj", "{2896B343-3C6C-4AA5-A8E1-AA182C33733E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRDemo.ApiGateway", "src\SignalRDemo.ApiGateway\SignalRDemo.ApiGateway.csproj", "{2896B343-3C6C-4AA5-A8E1-AA182C33733E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C7D3F4A-67B7-492A-8506-CB8F5BEBD265}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
