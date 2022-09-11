@@ -145,14 +145,16 @@ app.MapHub<CarImageHub>("/hubs/car-hubs");
 
 app.MapControllers();
 
-app.Lifetime.ApplicationStarted.Register(() =>
-{
-    app.RegisterWithConsule(app.Urls);
-});
+// yerel bilgisayarýnýzda docker üzerinden consul'u 8500 portu ile yayýnladýktan sonra aþaðýdaki kodlarý yorum satýrýndan çýkarabilisiniz.
+// Bu sayede uygulamanýn service discovery'i kullanýmýný etkinleþtirmiþ olursunuz.
+//app.Lifetime.ApplicationStarted.Register(() =>
+//{
+//    app.RegisterWithConsule(app.Urls);
+//});
 
-app.Lifetime.ApplicationStopped.Register(() =>
-{
-    app.DeregisterWithConsule(app.Urls);
-});
+//app.Lifetime.ApplicationStopped.Register(() =>
+//{
+//    app.DeregisterWithConsule(app.Urls);
+//});
 
 app.Run();
