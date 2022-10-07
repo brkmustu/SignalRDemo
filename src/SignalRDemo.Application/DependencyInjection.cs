@@ -25,10 +25,17 @@ public static class DependencyInjection
     {
         var proxyBuilder = new DefaultProxyBuilder();
 
-        container.RegisterWithInterceptor<ICarAppService, CarAppService>(proxyBuilder);
-        container.RegisterWithInterceptor<IAccountAppService, AccountAppService>(proxyBuilder);
-        container.RegisterWithInterceptor<ICarImageAppService, CarImageAppService>(proxyBuilder);
-        container.RegisterWithInterceptor<IOrderAppService, OrderAppService>(proxyBuilder);
+        container.Register<ICarAppService, CarAppService>();
+        container.Register<IAccountAppService, AccountAppService>();
+        container.Register<ICarImageAppService, CarImageAppService>();
+        container.Register<IOrderAppService, OrderAppService>();
+
+        container.Register<IInterceptor, ExceptionHandlingInterceptor>();
+
+        container.RegisterDecorator<ICarAppService>(proxyBuilder);
+        container.RegisterDecorator<IAccountAppService>(proxyBuilder);
+        container.RegisterDecorator<ICarImageAppService>(proxyBuilder);
+        container.RegisterDecorator<IOrderAppService>(proxyBuilder);
 
         return container;
     }
@@ -38,22 +45,18 @@ public static class DependencyInjection
     /// reflection üzerinden attribute'leri kullanılarak yapılabilir. şimdilik bu haliyle bırakıyoruz.
     /// </summary>
     /// <typeparam name="TService"></typeparam>
-    /// <typeparam name="TImplementation"></typeparam>
     /// <param name="container"></param>
     /// <param name="proxyBuilder"></param>
     /// <returns></returns>
-    private static IStashboxContainer RegisterWithInterceptor<TService, TImplementation>(this IStashboxContainer container, DefaultProxyBuilder proxyBuilder)
+    private static IStashboxContainer RegisterDecorator<TService>(this IStashboxContainer container, DefaultProxyBuilder proxyBuilder)
         where TService : class
-        where TImplementation : class, TService
     {
-        var carServiceProcessorProxy = proxyBuilder.CreateInterfaceProxyTypeWithTargetInterface(
+        var currentProxy = proxyBuilder.CreateInterfaceProxyTypeWithTargetInterface(
             typeof(TService),
             new Type[0],
             ProxyGenerationOptions.Default);
 
-        container.Register<TService, TImplementation>();
-        container.Register<IInterceptor, ExceptionHandlingInterceptor>();
-        container.RegisterDecorator<TService>(carServiceProcessorProxy);
+        container.RegisterDecorator<TService>(currentProxy);
 
         return container;
     }
